@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 2
-#define YY_END_OF_BUFFER 3
+#define YY_NUM_RULES 5
+#define YY_END_OF_BUFFER 6
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -362,26 +362,26 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[19] =
     {   0,
-        0,    0,    3,    2,    2,    0,    1,    0,    0,    0,
-        0,    0,    0,    0,    0,    0,    1,    0
+        0,    0,    6,    5,    3,    2,    2,    4,    2,    3,
+        2,    2,    4,    2,    2,    2,    1,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
     {   0,
+        1,    1,    1,    1,    1,    1,    1,    1,    2,    2,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    2,    1,    1,    3,    3,    3,
-        3,    3,    3,    3,    3,    3,    3,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    2,    1,    3,    1,    1,    1,    1,    4,    1,
+        1,    1,    1,    1,    1,    4,    1,    5,    5,    5,
+        5,    5,    5,    5,    5,    5,    5,    1,    1,    1,
+        1,    1,    1,    1,    4,    4,    4,    4,    4,    4,
+        4,    4,    4,    4,    4,    4,    4,    4,    4,    4,
+        4,    4,    4,    4,    4,    4,    4,    4,    4,    4,
+        1,    1,    1,    1,    4,    1,    4,    4,    4,    4,
 
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
-        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        6,    4,    4,    7,    8,    4,    4,    9,    4,    4,
+        4,    4,    4,    4,    4,    4,    4,    4,   10,    4,
+        4,    4,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -398,39 +398,41 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1
     } ;
 
-static const YY_CHAR yy_meta[4] =
+static const YY_CHAR yy_meta[11] =
     {   0,
-        1,    2,    3
+        1,    2,    2,    3,    1,    3,    3,    3,    3,    3
     } ;
 
-static const flex_int16_t yy_base[32] =
+static const flex_int16_t yy_base[21] =
     {   0,
-       15,   14,   16,   19,    0,    0,    0,    0,    0,    0,
-        0,    0,    0,    0,    0,    0,   19,   19,    0,   12,
-       11,   11,    9,    8,    7,    6,    6,    4,    3,    2,
-        1
+        0,    0,   24,   43,    0,    9,   21,   17,   11,    0,
+       17,   15,   11,   19,   26,   34,   13,   43,   12,   39
     } ;
 
-static const flex_int16_t yy_def[32] =
+static const flex_int16_t yy_def[21] =
     {   0,
-       19,   19,   18,   18,   20,   21,   22,   23,   24,   25,
-       26,   27,   28,   29,   30,   31,   18,    0,   18,   18,
-       18,   18,   18,   18,   18,   18,   18,   18,   18,   18,
-       18
+       18,    1,   18,   18,   19,   20,   20,   18,   20,   19,
+       20,   20,   18,   20,   20,   20,   20,    0,   18,   18
     } ;
 
-static const flex_int16_t yy_nxt[23] =
+static const flex_int16_t yy_nxt[54] =
     {   0,
-        4,    4,    4,   17,   16,   15,   14,   13,   12,   11,
-       10,    9,    8,    7,    6,   18,    5,    5,    3,   18,
-       18,   18
+        4,    5,    6,    7,    8,    7,    7,    7,    7,    9,
+       10,   11,   18,   10,   18,   13,   18,   14,   10,   11,
+       18,   13,   18,   18,   18,   18,   15,   18,   18,   18,
+       18,   18,   18,   18,   16,   18,   18,   18,   18,   17,
+       12,   12,    3,   18,   18,   18,   18,   18,   18,   18,
+       18,   18,   18
     } ;
 
-static const flex_int16_t yy_chk[23] =
+static const flex_int16_t yy_chk[54] =
     {   0,
-       19,   19,   19,   31,   30,   29,   28,   27,   26,   25,
-       24,   23,   22,   21,   20,    3,    2,    1,   18,   18,
-       18,   18
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        6,    6,    9,   19,   17,   13,   12,    9,   11,   11,
+       14,    8,    7,    3,    0,    0,   14,   15,    0,    0,
+        0,    0,    0,    0,   15,   16,    0,    0,    0,   16,
+       20,   20,   18,   18,   18,   18,   18,   18,   18,   18,
+       18,   18,   18
     } ;
 
 static yy_state_type yy_last_accepting_state;
@@ -447,13 +449,12 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "test.l"
-#line 2 "test.l"
+#line 1 "a.lex"
+#line 2 "a.lex"
 int wordCount=0;
 int numcount=0;
-int mobile_numcount = 0; 
-#line 455 "lex.yy.c"
 #line 456 "lex.yy.c"
+#line 457 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -670,9 +671,9 @@ YY_DECL
 		}
 
 	{
-#line 9 "test.l"
+#line 10 "a.lex"
 
-#line 675 "lex.yy.c"
+#line 676 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -705,7 +706,7 @@ yy_match:
 			yy_current_state = yy_nxt[yy_base[yy_current_state] + yy_c];
 			++yy_cp;
 			}
-		while ( yy_base[yy_current_state] != 19 );
+		while ( yy_base[yy_current_state] != 43 );
 
 yy_find_action:
 		yy_act = yy_accept[yy_current_state];
@@ -731,15 +732,31 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 10 "test.l"
-{printf("phone number: %s\n", yytext);}
+#line 11 "a.lex"
+{printf("%s\n",yytext);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 11 "test.l"
+#line 12 "a.lex"
+{ wordCount++;  /* increase the word count by one*/ } 
+	YY_BREAK
+case 3:
+/* rule 3 can match eol */
+YY_RULE_SETUP
+#line 13 "a.lex"
+{ /* do nothing*/ } 
+	YY_BREAK
+case 4:
+YY_RULE_SETUP
+#line 14 "a.lex"
+{ numcount++; /* one may want to add some processing           here*/ } 
+	YY_BREAK
+case 5:
+YY_RULE_SETUP
+#line 15 "a.lex"
 ECHO;
 	YY_BREAK
-#line 742 "lex.yy.c"
+#line 759 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1744,12 +1761,17 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 11 "test.l"
+#line 15 "a.lex"
 
 int main() { 
 printf("ok1\n");  
 yylex(); /* start the  analysis*/  
 printf("ok2\n"); 
+printf(" No of words: %d\n  number: %d\n", wordCount, numcount);  
 return 0;  
+}
+int yywrap() 
+{ 
+return 1; 
 }
 
