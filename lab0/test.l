@@ -7,7 +7,7 @@ int mobile_numcount = 0;
 digit [0-9]
 
 %%
-{digit}{3}-{digit}{4}-{digit}{4} {printf("phone number: %s\n", yytext);}
+{digit}{3}(-{digit}{4}-{digit}{4})? {printf("phone number: %s\n", yytext);}
 %%  
 int main() { 
 printf("ok1\n");  
