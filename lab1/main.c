@@ -6,7 +6,7 @@
 #include "globals.h"
 
 /* set NO_PARSE to TRUE to get a scanner-only compiler */
-#define NO_PARSE FALSE
+#define NO_PARSE TRUE
 /* set NO_ANALYZE to TRUE to get a parser-only compiler */
 #define NO_ANALYZE FALSE
 
@@ -23,7 +23,7 @@
 #if !NO_ANALYZE
 #include "analyze.h"
 #if !NO_CODE
-//#include "cgen.h"
+#include "cgen.h"
 #endif
 #endif
 #endif
@@ -61,14 +61,14 @@ main( int argc, char * argv[] )
   listing = stdout; /* send listing to screen */
   fprintf(listing,"\nTINY COMPILATION: %s\n",pgm);
 #if NO_PARSE
-  while (getToken()!=ENDFILE);           /* ´Ê·¨·ÖÎö²¿·Ö */
+  while (getToken()!=ENDFILE);           /* ï¿½Ê·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 #else
-  syntaxTree = parse();                  /* Óï·¨·ÖÎö²¿·Ö */
+  syntaxTree = parse();                  /* ï¿½ï·¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
   if (TraceParse) {
     fprintf(listing,"\nSyntax tree:\n");
     printTree(syntaxTree);
   }
-#if !NO_ANALYZE                          /* ÓïÒå·ÖÎö²¿·Ö£¬ÏÈ×¢ÊÍµô */
+#if !NO_ANALYZE                          /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö£ï¿½ï¿½ï¿½×¢ï¿½Íµï¿½ */
   if (! Error)
   { if (TraceAnalyze) fprintf(listing,"\nBuilding Symbol Table...\n");
     buildSymtab(syntaxTree);
@@ -88,7 +88,7 @@ main( int argc, char * argv[] )
     { printf("Unable to open %s\n",codefile);
       exit(1);
     }
-    codeGen(syntaxTree,codefile);             /*  ´úÂëÉú³É²¿·Ö£¬ÏÈ×¢ÊÍµô */
+    codeGen(syntaxTree,codefile);             /*  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É²ï¿½ï¿½Ö£ï¿½ï¿½ï¿½×¢ï¿½Íµï¿½ */
     fclose(code);
   }
 #endif
