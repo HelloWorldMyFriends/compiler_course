@@ -6,9 +6,9 @@ CC = gcc
 
 CFLAGS = -w 
 
-OBJS = scan.o main.o util.o parse.o symtab.o analyze.o
+OBJS = scan.o main.o util.o parse.o symtab.o analyze.o code.o cgen.o
 
-run: tiny
+run: tiny tm
 
 tiny: $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o tiny
@@ -33,6 +33,13 @@ symtab.o: symtab.c symtab.h
 
 analyze.o: analyze.c globals.h symtab.h analyze.h
 	$(CC) $(CFLAGS) -c analyze.c
+
+code.o: code.c globals.h code.h 
+	$(CC) $(CFLAGS) -c code.c
+
+cgen.o: cgen.c cgen.h globals.h symtab.h code.h
+	$(CC) $(CFLAGS) -c cgen.c
+
 
 clean:
 	-rm tiny 

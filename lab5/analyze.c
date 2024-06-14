@@ -2,6 +2,8 @@
 /* File: analyze.c                                  */
 /* Semantic analyzer implementation                 */
 /* for the TINY compiler                            */
+/* Compiler Construction: Principles and Practice   */
+/* Kenneth C. Louden                                */
 /****************************************************/
 
 #include "globals.h"
@@ -100,10 +102,10 @@ static void typeError(TreeNode * t, char * message)
 /* Procedure checkNode performs
  * type checking at a single tree node
  */
-static void checkNode(TreeNode * t)//TODO
+static void checkNode(TreeNode * t)
 { switch (t->nodekind)
-  { case ExpK:              /* �˴�����д���� */
-     switch (t->kind.exp)
+  { case ExpK:
+      switch (t->kind.exp)
       { case OpK:
           if ((t->child[0]->type != Integer) ||
               (t->child[1]->type != Integer))
@@ -121,7 +123,7 @@ static void checkNode(TreeNode * t)//TODO
           break;
       }
       break;
-    case StmtK:            /* �˴�����д���� */ 
+    case StmtK:
       switch (t->kind.stmt)
       { case IfK:
           if (t->child[0]->type == Integer)
@@ -144,7 +146,8 @@ static void checkNode(TreeNode * t)//TODO
       }
       break;
     default:
-      break;   
+      break;
+
   }
 }
 

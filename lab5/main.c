@@ -1,6 +1,8 @@
 /****************************************************/
 /* File: main.c                                     */
 /* Main program for TINY compiler                   */
+/* Compiler Construction: Principles and Practice   */
+/* Kenneth C. Louden                                */
 /****************************************************/
 
 #include "globals.h"
@@ -13,7 +15,7 @@
 /* set NO_CODE to TRUE to get a compiler that does not
  * generate code
  */
-#define NO_CODE TRUE
+#define NO_CODE FALSE
 
 #include "util.h"
 #if NO_PARSE
@@ -35,9 +37,9 @@ FILE * listing;
 FILE * code;
 
 /* allocate and set tracing flags */
-int EchoSource = TRUE;
-int TraceScan = FALSE;
-int TraceParse = TRUE;
+int EchoSource = FALSE;
+int TraceScan = TRUE;
+int TraceParse = FALSE;
 int TraceAnalyze = TRUE;
 int TraceCode = FALSE;
 
@@ -61,14 +63,14 @@ main( int argc, char * argv[] )
   listing = stdout; /* send listing to screen */
   fprintf(listing,"\nTINY COMPILATION: %s\n",pgm);
 #if NO_PARSE
-  while (getToken()!=ENDFILE);           /* �ʷ��������� */
+  while (getToken()!=ENDFILE);
 #else
-  syntaxTree = parse();                  /* �﷨�������� */
+  syntaxTree = parse();
   if (TraceParse) {
     fprintf(listing,"\nSyntax tree:\n");
     printTree(syntaxTree);
   }
-#if !NO_ANALYZE                          /* ����������֣���ע�͵� */
+#if !NO_ANALYZE
   if (! Error)
   { if (TraceAnalyze) fprintf(listing,"\nBuilding Symbol Table...\n");
     buildSymtab(syntaxTree);
@@ -88,7 +90,7 @@ main( int argc, char * argv[] )
     { printf("Unable to open %s\n",codefile);
       exit(1);
     }
-    codeGen(syntaxTree,codefile);             /*  �������ɲ��֣���ע�͵� */
+    codeGen(syntaxTree,codefile);
     fclose(code);
   }
 #endif

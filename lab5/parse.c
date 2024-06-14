@@ -1,8 +1,10 @@
 /****************************************************/
 /* File: parse.c                                    */
 /* The parser implementation for the TINY compiler  */
+/* Compiler Construction: Principles and Practice   */
+/* Kenneth C. Louden                                */
 /****************************************************/
-#include <stdio.h>
+
 #include "globals.h"
 #include "util.h"
 #include "scan.h"
@@ -57,14 +59,12 @@ TreeNode * stmt_sequence(void)
   return t;
 }
 
-TreeNode * statement(void)  
+TreeNode * statement(void)
 { TreeNode * t = NULL;
   switch (token) {
     case IF : t = if_stmt(); break;
     case REPEAT : t = repeat_stmt(); break;
-    case ID :
-      printf("\n---aaa---\n"); 
-      t = assign_stmt(); break;
+    case ID : t = assign_stmt(); break;
     case READ : t = read_stmt(); break;
     case WRITE : t = write_stmt(); break;
     default : syntaxError("unexpected token -> ");
@@ -76,8 +76,7 @@ TreeNode * statement(void)
 }
 
 TreeNode * if_stmt(void)
-{          
-  TreeNode * t = newStmtNode(IfK);
+{ TreeNode * t = newStmtNode(IfK);
   match(IF);
   if (t!=NULL) t->child[0] = exp();
   match(THEN);
@@ -91,8 +90,7 @@ TreeNode * if_stmt(void)
 }
 
 TreeNode * repeat_stmt(void)
-{
-  TreeNode * t = newStmtNode(RepeatK);
+{ TreeNode * t = newStmtNode(RepeatK);
   match(REPEAT);
   if (t!=NULL) t->child[0] = stmt_sequence();
   match(UNTIL);
@@ -101,19 +99,17 @@ TreeNode * repeat_stmt(void)
 }
 
 TreeNode * assign_stmt(void)
-{ 
-  TreeNode * t = newStmtNode(AssignK);
+{ TreeNode * t = newStmtNode(AssignK);
   if ((t!=NULL) && (token==ID))
     t->attr.name = copyString(tokenString);
   match(ID);
-  match(ASSIGN);  
+  match(ASSIGN);
   if (t!=NULL) t->child[0] = exp();
   return t;
 }
 
 TreeNode * read_stmt(void)
-{
-  TreeNode * t = newStmtNode(ReadK);
+{ TreeNode * t = newStmtNode(ReadK);
   match(READ);
   if ((t!=NULL) && (token==ID))
     t->attr.name = copyString(tokenString);
@@ -122,8 +118,7 @@ TreeNode * read_stmt(void)
 }
 
 TreeNode * write_stmt(void)
-{
-  TreeNode * t = newStmtNode(WriteK);
+{ TreeNode * t = newStmtNode(WriteK);
   match(WRITE);
   if (t!=NULL) t->child[0] = exp();
   return t;
@@ -146,8 +141,7 @@ TreeNode * exp(void)
 }
 
 TreeNode * simple_exp(void)
-{
-  TreeNode * t = term();
+{ TreeNode * t = term();
   while ((token==PLUS)||(token==MINUS))
   { TreeNode * p = newExpNode(OpK);
     if (p!=NULL) {
@@ -162,8 +156,7 @@ TreeNode * simple_exp(void)
 }
 
 TreeNode * term(void)
-{
-  TreeNode * t = factor();
+{ TreeNode * t = factor();
   while ((token==TIMES)||(token==OVER))
   { TreeNode * p = newExpNode(OpK);
     if (p!=NULL) {
@@ -178,8 +171,7 @@ TreeNode * term(void)
 }
 
 TreeNode * factor(void)
-{
-  TreeNode * t = NULL;
+{ TreeNode * t = NULL;
   switch (token) {
     case NUM :
       t = newExpNode(ConstK);

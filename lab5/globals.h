@@ -2,6 +2,8 @@
 /* File: globals.h                                  */
 /* Global types and vars for TINY compiler          */
 /* must come before other include files             */
+/* Compiler Construction: Principles and Practice   */
+/* Kenneth C. Louden                                */
 /****************************************************/
 
 #ifndef _GLOBALS_H_

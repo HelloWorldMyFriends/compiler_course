@@ -4,6 +4,8 @@
 /* (allows only one symbol table)                   */
 /* Symbol table is implemented as a chained         */
 /* hash table                                       */
+/* Compiler Construction: Principles and Practice   */
+/* Kenneth C. Louden                                */
 /****************************************************/
 
 #include <stdio.h>
@@ -58,12 +60,8 @@ static BucketList hashTable[SIZE];
  * loc = memory location is inserted only the
  * first time, otherwise ignored
  */
-void st_insert( char * name, int lineno, int loc )//TODO
-{ 
-  /* ����ɷ��ű���Ŀ�����ӳ���
-     ���ң��Ҳ���˵��������һ�������֣����������Ŀ��Ĭ�ϲ������Ӧ��ϣ����ı�ͷ��
-     �ҵ�˵���������ֽ������ã����кż��뵽�����ֵ�������  */
-  int h = hash(name);
+void st_insert( char * name, int lineno, int loc )
+{ int h = hash(name);
   BucketList l =  hashTable[h];
   while ((l != NULL) && (strcmp(name,l->name) != 0))
     l = l->next;

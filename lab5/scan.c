@@ -1,6 +1,8 @@
 /****************************************************/
 /* File: scan.c                                     */
 /* The scanner implementation for the TINY compiler */
+/* Compiler Construction: Principles and Practice   */
+/* Kenneth C. Louden                                */
 /****************************************************/
 
 #include "globals.h"
@@ -90,77 +92,74 @@ TokenType getToken(void)
      { case START:
          if (isdigit(c))
            state = INNUM;
-         else if (isalpha(c))          /* �˴�����д���� */
-	   state = INID;
-	 else if (c == '{')
-	   state = INCOMMENT;
-	 else if (c == ':')
-	   state = INASSIGN;
-	 else if (isspace(c) || c == '\n' || c == '\t')
-	   save = FALSE;
-	 else {
-	    state = DONE;
-                    switch (c) {
-                        case EOF:
-                            currentToken = ENDFILE;
-                            break;
-                        case '=':
-                            currentToken = EQ;
-                            break;
-                        case '<':
-                            currentToken = LT;
-                            break;
-                        case '+':
-                            currentToken = PLUS;
-                            break;
-                        case '-':
-                            currentToken = MINUS;
-                            break;
-                        case '*':
-                            currentToken = TIMES;
-                            break;
-                        case '/':
-                            currentToken = OVER;
-                            break;
-                        case '(':
-                            currentToken = LPAREN;
-                            break;
-                        case ')':
-                            currentToken = RPAREN;
-                            break;
-                        case ';':
-                            currentToken = SEMI;
-                            break;
-                        default:
-                            currentToken = ERROR;
-                            break;
-	 
-		 }
-	 }
-	 break;
-
-       case INCOMMENT:
-                   /* �˴�����д���� */
-	 if (c == '}') {
-                    save = FALSE;
-                    state = START;
-                } else if (c == EOF) {
-                    state = DONE;
-                    currentToken = ENDFILE;
-                }
+         else if (isalpha(c))
+           state = INID;
+         else if (c == ':')
+           state = INASSIGN;
+         else if ((c == ' ') || (c == '\t') || (c == '\n'))
+           save = FALSE;
+         else if (c == '{')
+         { save = FALSE;
+           state = INCOMMENT;
+         }
+         else
+         { state = DONE;
+           switch (c)
+           { case EOF:
+               save = FALSE;
+               currentToken = ENDFILE;
+               break;
+             case '=':
+               currentToken = EQ;
+               break;
+             case '<':
+               currentToken = LT;
+               break;
+             case '+':
+               currentToken = PLUS;
+               break;
+             case '-':
+               currentToken = MINUS;
+               break;
+             case '*':
+               currentToken = TIMES;
+               break;
+             case '/':
+               currentToken = OVER;
+               break;
+             case '(':
+               currentToken = LPAREN;
+               break;
+             case ')':
+               currentToken = RPAREN;
+               break;
+             case ';':
+               currentToken = SEMI;
+               break;
+             default:
+               currentToken = ERROR;
+               break;
+           }
+         }
          break;
-
+       case INCOMMENT:
+         save = FALSE;
+         if (c == EOF)
+         { state = DONE;
+           currentToken = ENDFILE;
+         }
+         else if (c == '}') state = START;
+         break;
        case INASSIGN:
-                   /* �˴�����д���� */
-	  if (c == '=') {
-                    currentToken = ASSIGN;
-                    state = DONE;
-                } else {
-                    ungetNextChar();
-                    save = FALSE;
-                    state = DONE;
-                    currentToken = ERROR;
-                }
+         state = DONE;
+         if (c == '=')
+           currentToken = ASSIGN;
+         else
+         { /* backup in the input */
+           ungetNextChar();
+           save = FALSE;
+           currentToken = ERROR;
+         }
          break;
        case INNUM:
          if (!isdigit(c))
@@ -172,13 +171,13 @@ TokenType getToken(void)
          }
          break;
        case INID:
-                   /* �˴�����д���� */
-		  if (!isalpha(c)) {
-                    ungetNextChar();
-                    save = FALSE;
-                    state = DONE;
-                    currentToken = ID;
-                }
+         if (!isalpha(c))
+         { /* backup in the input */
+           ungetNextChar();
+           save = FALSE;
+           state = DONE;
+           currentToken = ID;
+         }
          break;
        case DONE:
        default: /* should never happen */
